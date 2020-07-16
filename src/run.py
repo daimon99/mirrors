@@ -2,7 +2,7 @@
 
 import os
 import requests
-from bottle import route, static_file, run, redirect
+from bottle import route, static_file, run, redirect, abort
 from pathlib import Path
 
 base_dir = Path(__file__).resolve().parents[1] / 'www'
@@ -46,6 +46,7 @@ def mapping(repo, url):
     elif repo == 'pypi':
         return f'http://mirrors.cloud.tencent.com/{url}'
     else:
+        abort(400, f'不支持的镜像类型，请检查您的配置文件: {repo}, {url}')
         raise NotImplementedError(f'不支持的镜像：{repo}, {url}')
 
 
