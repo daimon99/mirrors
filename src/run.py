@@ -40,7 +40,7 @@ def mapping(repo, url):
     elif repo == 'salt':
         return f'https://repo.saltstack.com/{url}'
     elif repo == 'pypi':
-        return f'http://mirrors.cloud.tencent.com/pypi/{url}'
+        return f'http://mirrors.cloud.tencent.com/{url}'
     else:
         raise NotImplementedError(f'不支持的镜像：{repo}, {url}')
 

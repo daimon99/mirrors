@@ -33,3 +33,27 @@ python src/run.py
 ```
 
 镜像文件，按源类型，自动存放在 www/<repo>/<url> 目录下。
+
+# 镜像配置
+
+## yum 源
+
+yum.repos.d 源文件中的domain 部分，替换为：
+
+* centos && epel : https://mirrors.daimon.cc/centos
+* influx: https://mirrors.daimon.cc/influx
+* salt: https://mirrors.daimon.cc/salt
+* pg: https://mirrors.daimon.cc/pg
+
+## pypi 源
+
+~/.pip/pip.conf 或 /etc/pip.conf 域名部分替换为：https://mirrors.daimon.cc/pypi
+
+参考配置
+
+```
+[global]
+index-url=https://mirrors.daimon.cc/pypi/pypi/simple
+trusted-host=
+    mirrors.daimon.cc
+```
