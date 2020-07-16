@@ -1,10 +1,9 @@
 # coding: utf-8
 
 import os
-from pathlib import Path
-
 import requests
 from bottle import route, static_file, run, redirect
+from pathlib import Path
 
 base_dir = Path(__file__).resolve().parents[1] / 'www'
 
@@ -22,7 +21,12 @@ def download_resource(repo, url, mapping_url):
     print('download resource', p1)
     p1.parent.mkdir(parents=True, exist_ok=True)
     ret = requests.get(mapping_url)
-    p1.write_bytes(ret.content)
+    if p1.suffix:
+        p1.write_bytes(ret.content)
+    else:
+        # 没有后缀，说明是目录索引
+        p1.mkdir(exist_ok=True)
+        (p1 / 'index.html').write_bytes(ret.content)
 
 
 def start_download(repo, url, mapping_url):
@@ -59,4 +63,3 @@ def mirrors(repo, url):
 
 if __name__ == '__main__':
     run(host='0.0.0.0', port='9093')
-
