@@ -46,7 +46,7 @@ def mapping(repo, url):
     elif repo == 'pypi':
         return f'http://mirrors.cloud.tencent.com/{url}'
     elif repo == 'rpmfusion':
-    	return f'http://mirrors.rpmfusion.org/{url}'
+    	return f'http://download1.rpmfusion.org/{url}'
     else:
         abort(400, f'不支持的镜像类型，请检查您的配置文件: {repo}, {url}')
         raise NotImplementedError(f'不支持的镜像：{repo}, {url}')
@@ -60,7 +60,8 @@ def mirrors(repo, url):
         return static_file(url, base_dir / repo)
     else:
         mapping_url = mapping(repo, url)
-        start_download(repo, url, mapping_url)
+        if 'repodata' not in url:
+            start_download(repo, url, mapping_url)
         return redirect(mapping_url)
 
 
