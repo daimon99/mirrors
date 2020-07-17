@@ -11,6 +11,7 @@
 * influx yum 源
 * salt yum 源
 * postgresql yum 源
+* rpmfusion 源
 * pypi
 
 # 依赖
@@ -44,6 +45,7 @@ yum.repos.d 源文件中的domain 部分，替换为：
 * influx: https://mirrors.daimon.cc/influx
 * salt: https://mirrors.daimon.cc/salt
 * pg: https://mirrors.daimon.cc/pg
+* rpmfusion: https://mirrors.daimon.cc/rpmfusion ( 替换 download1.rpmfusion.org )
 
 ## pypi 源
 
